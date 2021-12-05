@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "B"
+    ],
+    "key": {
+        "#": {
+            "item": "frikandelbroodje:frikandel"
+        },
+        "B": {
+            "item": "minecraft:bread"
+        }
+    },
+    "result": {
+        "item": "frikandelbroodje:frikandelbroodje",
+        "count": 2
+    }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "frikandelbroodje:horse_meat_modifier",
+  "conditions": [
+    {
+      "condition": "minecraft:entity_properties",
+      "predicate": {
+        "type": "minecraft:horse"
+      },
+      "entity": "this"
+    },
+    {
+      "condition": "minecraft:random_chance_with_looting",
+      "chance": 2.0,
+      "looting_multiplier": 0.1
+    }
+  ],
+  "item": "frikandelbroodje:horse_meat"
+}

@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "frikandelbroodje:horse_meat"
+    },
+    "result": "frikandelbroodje:frikandel",
+    "experience": 0.2,
+    "cookingtime": 160
+}
