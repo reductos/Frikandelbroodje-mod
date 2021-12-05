@@ -1,0 +1,15 @@
+/out/
+logs/
+
+run/
+
+
+### Java ###
+*.class
+
+### Gradle ###
+.gradle
+/build/
+
+### intelij ###
+.idea
