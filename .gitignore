@@ -13,3 +13,6 @@ run/
 
 ### intelij ###
 .idea
+*.launch
+/src/generated/
+/src/test/

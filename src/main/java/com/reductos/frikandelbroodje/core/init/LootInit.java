@@ -1,21 +1,14 @@
 package com.reductos.frikandelbroodje.core.init;
 
-import com.reductos.frikandelbroodje.*;
-import com.reductos.frikandelbroodje.client.*;
-import net.minecraft.data.LootTableProvider;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.LootTableManager;
-import net.minecraft.loot.LootTables;
-import net.minecraft.resources.IFutureReloadListener;
-import net.minecraft.util.*;
-import net.minecraftforge.common.loot.*;
-import net.minecraftforge.event.*;
-import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
-import net.minecraftforge.eventbus.api.*;
-import net.minecraftforge.fml.common.*;
+import com.reductos.frikandelbroodje.client.horse_meat_modifier;
+import com.reductos.frikandelbroodje.frikandelbroodje;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-import javax.annotation.*;
+import javax.annotation.Nonnull;
 
 @Mod.EventBusSubscriber(modid = frikandelbroodje.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class LootInit {

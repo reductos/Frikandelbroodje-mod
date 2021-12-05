@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
 "textures": {
-"layer0": "frikandelbroodje:items/horse_meat2"
+"layer0": "frikandelbroodje:items/horse_meat"
 }
 }
