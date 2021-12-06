@@ -1,8 +1,8 @@
 package com.reductos.frikandelbroodje;
 
 import com.reductos.frikandelbroodje.core.init.ItemInit;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -17,7 +17,7 @@ public class frikandelbroodje {
 
     public static final Logger LOGGER = LogManager.getLogger();
 
-    public static final ItemGroup TAB_FRIKANDEL = new ItemGroup(MODID) {
+    public static final CreativeModeTab TAB_FRIKANDEL = new CreativeModeTab(MODID) {
         @Override
         public ItemStack makeIcon() {
             return ItemInit.FRIKANDELBROODJE.get().getDefaultInstance();
