@@ -1,6 +1,7 @@
 package com.reductos.frikandelbroodje;
 
 import com.reductos.frikandelbroodje.core.init.ItemInit;
+import com.reductos.frikandelbroodje.core.init.LootInit;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -28,7 +29,7 @@ public class frikandelbroodje {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ItemInit.ITEMS.register(bus);
-
+        LootInit.GLM.register(bus);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
