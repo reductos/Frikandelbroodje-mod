@@ -1,21 +1,15 @@
 package com.reductos.frikandelbroodje.core.init;
 
+import com.mojang.serialization.Codec;
 import com.reductos.frikandelbroodje.client.horse_meat_modifier;
 import com.reductos.frikandelbroodje.frikandelbroodje;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.common.loot.IGlobalLootModifier;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
-import javax.annotation.Nonnull;
-
-@Mod.EventBusSubscriber(modid = frikandelbroodje.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class LootInit {
+    public static final DeferredRegister<Codec<? extends IGlobalLootModifier>> GLM = DeferredRegister.create(ForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, frikandelbroodje.MODID);
 
-    @SubscribeEvent
-    public static void registerModifierSerializers(@Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
-        event.getRegistry().register(new horse_meat_modifier.Serializer().setRegistryName(new ResourceLocation(frikandelbroodje.MODID, "horse_meat_modifier")));
-    }
-
+    public static final RegistryObject<Codec<horse_meat_modifier>> HORSE_MEAT_MODIFIER = GLM.register("horse_meat_modifier", horse_meat_modifier.CODEC);
 }

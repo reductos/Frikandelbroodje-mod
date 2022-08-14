@@ -1,7 +1,10 @@
 package com.reductos.frikandelbroodje.client;
 
-import com.google.gson.JsonObject;
+import com.google.common.base.Suppliers;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.reductos.frikandelbroodje.*;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -10,20 +13,20 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 @SuppressWarnings("SpellCheckingInspection")
 public class horse_meat_modifier extends LootModifier {
+
+    public static final Supplier<Codec<horse_meat_modifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).and(
+            ForgeRegistries.ITEMS.getCodec().fieldOf("item").forGetter(m -> m.itemReward)).apply(inst, horse_meat_modifier::new)));
 
     private final Item itemReward;
 
@@ -38,7 +41,7 @@ public class horse_meat_modifier extends LootModifier {
 
     @Nonnull
     @Override
-    public List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
+    protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
 
         int lootmodifier = context.getLootingModifier();
 
@@ -56,7 +59,7 @@ public class horse_meat_modifier extends LootModifier {
         generatedLoot.add(new ItemStack(itemReward));
 //        generatedLoot.forEach((e) -> frikandelbroodje.LOGGER.info(e.toString()));
         if (onfire) {
-            ArrayList<ItemStack> ret = new ArrayList<>();
+            ObjectArrayList<ItemStack> ret = new ObjectArrayList<>();
             generatedLoot.forEach((stack) -> ret.add(smelt(stack, context)));
             return ret;
         } else {
@@ -72,19 +75,8 @@ public class horse_meat_modifier extends LootModifier {
                 .orElse(stack);
     }
 
-    public static class Serializer extends GlobalLootModifierSerializer<horse_meat_modifier> {
-
-        @Override
-        public horse_meat_modifier read(ResourceLocation name, JsonObject object, LootItemCondition[] conditionsIn) {
-            Item horse_meat = ForgeRegistries.ITEMS.getValue(new ResourceLocation((GsonHelper.getAsString(object, "item"))));
-            return new horse_meat_modifier(conditionsIn, horse_meat);
-        }
-
-        @Override
-        public JsonObject write(horse_meat_modifier instance) {
-            return null;
-        }
-
-
+    @Override
+    public Codec<horse_meat_modifier> codec() {
+        return CODEC.get();
     }
 }
